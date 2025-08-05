@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rama Venkata Manikanta Sairam Kattunga | Software Developer</title>
+    <title>Rama Venkata Manikanta Sairam Kattunga | Fresher Today, Tech Lead Tomorrow</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -18,6 +18,15 @@
             --border-color: #333;
         }
 
+        /* Light Mode Theme Variables */
+        body.light-mode {
+            --background-color: #f7f9fc;
+            --text-color: #222;
+            --card-bg-color: #ffffff;
+            --header-bg-color: rgba(255, 255, 255, 0.85);
+            --border-color: #e0e0e0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -26,6 +35,8 @@
 
         html {
             scroll-behavior: smooth;
+            /* Fix for scrollbar flash on load */
+            overflow-x: hidden;
         }
 
         body {
@@ -33,7 +44,9 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
+            /* Fix for scrollbar flash on load */
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         /* Fun ASCII Art for Interviewers in Console */
@@ -46,7 +59,6 @@
             max-width: 1100px;
             margin: auto;
             padding: 0 20px;
-            overflow-x: hidden;
         }
 
         header {
@@ -57,8 +69,10 @@
             padding: 1rem 0;
             background: var(--header-bg-color);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid transparent;
         }
 
         nav {
@@ -72,7 +86,7 @@
         nav .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
         }
         
@@ -85,6 +99,7 @@
         nav ul {
             list-style: none;
             display: flex;
+            align-items: center; /* Vertically align items */
         }
 
         nav ul li {
@@ -100,6 +115,23 @@
 
         nav ul li a:hover {
             color: var(--secondary-color);
+        }
+
+        /* Theme Toggle Button Style */
+        #theme-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.4s ease;
+        }
+        #theme-toggle:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1) rotate(15deg);
+        }
+        #theme-toggle .fa-sun {
+            color: #f39c12;
         }
         
         .hamburger {
@@ -149,7 +181,7 @@
         }
         
         #hero .social-links a {
-            color: var(--text-color); /* white */
+            color: var(--text-color);
             font-size: 1.5rem;
             margin: 0 15px;
             transition: all 0.3s ease;
@@ -184,7 +216,7 @@
         }
 
         section {
-            padding: 3rem 0;
+            padding: 4rem 0; /* Increased padding */
         }
 
         .section-title {
@@ -227,7 +259,7 @@
             background: var(--card-bg-color);
             padding: 2rem;
             border-radius: 10px;
-            border: 1px solid transparent;
+            border: 1px solid var(--border-color);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 25px rgba(0,0,0,0.1);
         }
@@ -235,6 +267,7 @@
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--secondary-color);
+            box-shadow: 0 8px 30px rgba(37, 117, 252, 0.2);
         }
 
         .card h3 {
@@ -247,6 +280,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--text-color);
         }
 
         .card p {
@@ -258,6 +292,9 @@
             font-size: 0.9rem;
             color: #aaa;
             font-weight: 600;
+        }
+        body.light-mode .card .meta {
+            color: #777;
         }
         
         .education-item {
@@ -284,6 +321,9 @@
         .education-item .details p {
             margin: 0.2rem 0 0;
             color: #bbb;
+        }
+        body.light-mode .education-item .details p {
+            color: #555;
         }
         
         .education-item .score {
@@ -336,10 +376,10 @@
         }
         .skill-tag:hover {
             transform: scale(1.08);
-            box-shadow: 0 4px 16px var(--secondary-color);
+            box-shadow: 0 4px 16px rgba(37, 117, 252, 0.3);
         }
         .skill-summary {
-            background: var(--card-bg-color);
+            background: rgba(37,117,252,0.07);
             border-radius: 8px;
             padding: 0.7rem 1rem;
             margin-top: 0.5rem;
@@ -350,6 +390,9 @@
             color: #b3cfff;
             font-size: 0.98rem;
             list-style: disc inside;
+        }
+        body.light-mode .skill-summary ul {
+            color: var(--secondary-color);
         }
         .skill-summary li {
             margin-bottom: 0.3rem;
@@ -415,13 +458,15 @@
             border-top: 1px solid var(--border-color);
         }
         
-        /* Add to your style block for enhanced education section */
         .prominent-edu {
             border: 2px solid var(--primary-color);
-            box-shadow: 0 8px 32px rgba(106, 17, 203, 0.15), 0 2px 12px var(--secondary-color);
+            box-shadow: 0 2px 12px var(--secondary-color);
             background: linear-gradient(120deg, var(--card-bg-color) 80%, #2575fc22 100%);
             position: relative;
             margin-bottom: 0;
+        }
+        body.light-mode .prominent-edu {
+             box-shadow: 0 8px 32px rgba(37, 117, 252, 0.15);
         }
         .prominent-edu h4 {
             font-size: 1.15rem;
@@ -468,19 +513,52 @@
             padding: 0;
             font-size: 0.98rem;
             color: #b3cfff;
+            list-style-position: inside;
         }
+        body.light-mode .edu-coursework ul,
+        body.light-mode .edu-achievements ul {
+            color: #444;
+        }
+
+        .project-skills {
+            margin-bottom: 1rem;
+            background: rgba(37,117,252,0.07);
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+        }
+        .project-skills strong {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .project-skills ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #b3cfff;
+            font-size: 0.98rem;
+            list-style: disc inside;
+        }
+        body.light-mode .project-skills ul {
+            color: var(--secondary-color);
+        }
+        .project-skills li {
+            margin-bottom: 0.2rem;
+        }
+
         /* Mobile Responsive Styles */
         @media(max-width: 768px) {
             nav ul {
                 position: fixed;
                 left: -100%;
-                top: 60px;
+                top: 60px; /* Adjust based on header height */
                 flex-direction: column;
                 background-color: var(--card-bg-color);
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
                 padding: 2rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             }
 
             nav ul.active {
@@ -517,49 +595,6 @@
                 font-size: 2rem;
             }
         }
-
-        /* Add to your style block */
-        #theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-left: 20px;
-            transition: color 0.3s;
-        }
-        #theme-toggle:hover {
-            color: var(--secondary-color);
-        }
-
-        [data-aos] {
-    overflow: visible !important;
-}
-.project-skills {
-    margin-bottom: 1rem;
-    background: rgba(37,117,252,0.07);
-    border-radius: 8px;
-    padding: 0.7rem 1rem;
-}
-.project-skills strong {
-    color: var(--secondary-color);
-    font-size: 1rem;
-    display: block;
-    margin-bottom: 0.3rem;
-}
-.project-skills ul {
-    margin: 0;
-    padding-left: 1.2rem;
-    color: #b3cfff;
-    font-size: 0.98rem;
-    list-style: disc inside;
-}
-body.light-mode .project-skills ul {
-    color: #2575fc;
-}
-.project-skills li {
-    margin-bottom: 0.2rem;
-}
     </style>
 </head>
 <body>
@@ -575,15 +610,17 @@ body.light-mode .project-skills ul {
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-            <button id="theme-toggle" aria-label="Toggle light/dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
         </nav>
     </header>
 
@@ -622,7 +659,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up"><span>Education</span></h2>
                 <div class="grid-layout">
-                    <!-- BE Card -->
                     <div class="card prominent-edu" data-aos="fade-up">
                         <h4>Bachelor of Engineering (B.E.) – Computer Science and Engineering</h4>
                         <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Saveetha School of Engineering, Chennai, TN</div>
@@ -644,7 +680,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                             </ul>
                         </div>
                     </div>
-                    <!-- HSC Card -->
                     <div class="card prominent-edu" data-aos="fade-up" data-aos-delay="100">
                         <h4>Higher Secondary Certificate (HSC) – 12th Grade</h4>
                         <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Sri Chaitanya Junior College, Andhra Pradesh</div>
@@ -663,7 +698,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                             </ul>
                         </div>
                     </div>
-                    <!-- SSLC Card -->
                     <div class="card prominent-edu" data-aos="fade-up" data-aos-delay="200">
                         <h4>Secondary School Leaving Certificate (SSLC) – 10th Grade</h4>
                         <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Bhashyam High School, Andhra Pradesh</div>
@@ -779,7 +813,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up"><span>Skills</span></h2>
                 <div class="grid-layout">
-                    <!-- Technical Skills Card -->
                     <div class="card" data-aos="fade-up">
                         <h3><i class="fas fa-code"></i> Technical Skills</h3>
                         <div class="skills-list">
@@ -801,7 +834,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                             </ul>
                         </div>
                     </div>
-                    <!-- Analytics & Cloud Card -->
                     <div class="card" data-aos="fade-up" data-aos-delay="100">
                         <h3><i class="fas fa-cloud"></i> Analytics & Cloud</h3>
                         <div class="skills-list">
@@ -819,7 +851,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                             </ul>
                         </div>
                     </div>
-                    <!-- Soft Skills & Languages Card -->
                     <div class="card" data-aos="fade-up" data-aos-delay="200">
                         <h3><i class="fas fa-user-friends"></i> Soft Skills & Languages</h3>
                         <div class="skills-list">
@@ -853,13 +884,13 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                         <p>Focused on OCI services and cloud ML tools for generative AI applications.</p>
                         <a href="https://drive.google.com/file/d/1_QOkIRP5SJUrn1vS-ylHGTrrKT5MBk0Z/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
-                    <div class="card" data-aos="fade-up">
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
                         <h4>Oracle APEX Cloud Developer Certified Professional</h4>
                         <p class="meta">Oracle University</p>
                         <p>Skilled in low-code app development using Oracle APEX Cloud.</p>
                         <a href="https://drive.google.com/file/d/1H6QLNEfzjUzyX5kTfs8mOSElYCFHG1RN/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
-        
+            
                     <div class="card" data-aos="fade-up" data-aos-delay="200">
                         <h4>SQL and Relational Databases</h4>
                         <p class="meta">CognitiveClass.ai, 2024</p>
@@ -878,12 +909,10 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                         <p>Explored IoT architecture, edge computing, sensors, and management fundamentals.</p>
                         <a href="https://drive.google.com/file/d/1IQujumoVYiCjBNkjBUicXAFcfplSVuk4/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
-                    <!-- Add this card to your Certifications section -->
                     <div class="card" data-aos="fade-up" data-aos-delay="500">
                         <h4>Wipro Certified Java Full Stack Developer </h4>
                         <p class="meta">Wipro Oct-2024</p>
                         <p>Gained hands-on experience in building scalable web applications.</p>
-                        </p>
                         <a href="https://drive.google.com/file/d/1_QOkIRP5SJUrn1vS-ylHGTrrKT5MBk0Z/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
                 </div>
@@ -896,18 +925,17 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                 <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll get back to you!</p>
                 <div class="contact-info">
                     <div class="info-item">
-  <i class="fas fa-phone"></i>
-  <span>+91 9642736457</span>
-</div>
-<div class="info-item">
-  <i class="fas fa-envelope"></i>
-  <span>sairamkattunga3333@gmail.com</span>
-</div>
-<div class="info-item">
-  <i class="fas fa-map-marker-alt"></i>
-  <span>Bhimavaram, Andhra Pradesh, India</span>
-</div>
-
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9642736457</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>sairamkattunga333@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bhimavaram, Andhra Pradesh, India</span>
+                    </div>
                 </div>
                 <a href="mailto:Sairamkattunga333@gmail.com" class="btn"><i class="fas fa-paper-plane"></i> Say Hello</a>
             </div>
@@ -943,34 +971,35 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
             navMenu.classList.remove("active");
         }));
         
-        // Show console art for interviewers
-        const consoleArt = document.querySelector('.console-art').textContent;
-        console.log(consoleArt);
+        // --- THEME TOGGLE SCRIPT ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
 
-        // Theme toggle functionality
-        document.getElementById('theme-toggle').onclick = function() {
-            const root = document.documentElement;
-            const icon = this.querySelector('i');
-            if (!document.body.classList.contains('light-mode')) {
-                root.style.setProperty('--background-color', '#f7f9fc');
-                root.style.setProperty('--text-color', '#222');
-                root.style.setProperty('--card-bg-color', '#fff');
-                root.style.setProperty('--header-bg-color', 'rgba(255,255,255,0.85)');
-                root.style.setProperty('--border-color', '#e0e0e0');
-                document.body.classList.add('light-mode');
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
+        // Function to set the theme
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                body.classList.add('light-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
             } else {
-                root.style.setProperty('--background-color', '#121212');
-                root.style.setProperty('--text-color', '#e0e0e0');
-                root.style.setProperty('--card-bg-color', '#1e1e1e');
-                root.style.setProperty('--header-bg-color', 'rgba(30, 30, 30, 0.85)');
-                root.style.setProperty('--border-color', '#333');
-                document.body.classList.remove('light-mode');
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                body.classList.remove('light-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
             }
         };
+
+        // Check for saved theme in localStorage on page load
+        const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
+        applyTheme(savedTheme);
+
+        // Event listener for the toggle button
+        themeToggle.addEventListener('click', () => {
+            let newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
     </script>
 </body>
 </html>
