@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rama Venkata Manikanta Sairam Kattunga | Software Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --primary-color: #2798d0;
+            --secondary-color: #2575fc;
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg-color: #1e1e1e;
+            --header-bg-color: rgba(30, 30, 30, 0.85);
+            --border-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Fun ASCII Art for Interviewers in Console */
+        /* You can see this by pressing F12 or Ctrl+Shift+I */
+        .console-art {
+            display: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: var(--header-bg-color);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        nav .logo span {
+             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-color);
+            transition: all 0.3s ease-in-out;
+        }
+
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px; /* Header offset */
+        }
+        
+        #hero .hero-content {
+            max-width: 800px;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        #hero h1 .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero p.subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        #hero .social-links a {
+            color: var(--text-color); /* white */
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        #hero .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 117, 252, 0.4);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title span {
+            position: relative;
+        }
+        
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card .meta {
+            font-size: 0.9rem;
+            color: #aaa;
+            font-weight: 600;
+        }
+        
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .education-item .details h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .education-item .details p {
+            margin: 0.2rem 0 0;
+            color: #bbb;
+        }
+        
+        .education-item .score {
+            text-align: right;
+        }
+        
+        .education-item .score p {
+            margin: 0;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .education-item .score span {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            justify-content: flex-start;
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            padding: 0.5rem 1.1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            box-shadow: 0 2px 8px rgba(154, 162, 176, 0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+        .skill-tag i {
+            font-size: 1.1em;
+        }
+        .skill-tag:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 16px var(--secondary-color);
+        }
+        .skill-summary {
+            background: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+            margin-top: 0.5rem;
+        }
+        .skill-summary ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #b3cfff;
+            font-size: 0.98rem;
+            list-style: disc inside;
+        }
+        .skill-summary li {
+            margin-bottom: 0.3rem;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 8px 18px;
+            background: transparent;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: #fff;
+        }
+        
+        .btn-secondary i {
+            margin-right: 6px;
+        }
+
+        #contact {
+             background: var(--card-bg-color);
+        }
+        
+        #contact .container {
+            text-align: center;
+        }
+        
+        #contact p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Add to your style block for enhanced education section */
+        .prominent-edu {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 8px 32px rgba(106, 17, 203, 0.15), 0 2px 12px var(--secondary-color);
+            background: linear-gradient(120deg, var(--card-bg-color) 80%, #2575fc22 100%);
+            position: relative;
+            margin-bottom: 0;
+        }
+        .prominent-edu h4 {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .prominent-edu .edu-location {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--secondary-color);
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .score-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .score-badge {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            padding: 0.4em 1em;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.98rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            box-shadow: 0 2px 8px rgba(37,117,252,0.15);
+        }
+        .edu-focus,
+        .edu-coursework,
+        .edu-achievements {
+            margin-bottom: 0.7rem;
+            font-size: 1rem;
+        }
+        .edu-coursework ul,
+        .edu-achievements ul {
+            margin: 0.3em 0 0 1em;
+            padding: 0;
+            font-size: 0.98rem;
+            color: #b3cfff;
+        }
+        /* Mobile Responsive Styles */
+        @media(max-width: 768px) {
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background-color: var(--card-bg-color);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 1.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            #hero p.subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Add to your style block */
+        #theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+        #theme-toggle:hover {
+            color: var(--secondary-color);
+        }
+
+        [data-aos] {
+    overflow: visible !important;
+}
+.project-skills {
+    margin-bottom: 1rem;
+    background: rgba(37,117,252,0.07);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+}
+.project-skills strong {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+.project-skills ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #b3cfff;
+    font-size: 0.98rem;
+    list-style: disc inside;
+}
+body.light-mode .project-skills ul {
+    color: #2575fc;
+}
+.project-skills li {
+    margin-bottom: 0.2rem;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo"><span>Sairam</span>Kattunga</a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle light/dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content" data-aos="fade-in" data-aos-duration="1000">
+            <h1>Rama Venkata Manikanta <span class="gradient-text">Sairam Kattunga</span></h1>
+            <p class="subtitle">Software Developer with a passion for Full-Stack Development and AI/ML</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/sairamkrvm123/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Sairam-kattunga" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:Sairamkattunga333@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.instagram.com/_____sai_ram______/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://leetcode.com/u/Sairam-333/" target="_blank" aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
+            </div>
+            <a href="https://drive.google.com/file/d/125bO3fxzSSk-ZlqFuxt0at2AjRyLzeS6/view?usp=sharing" download class="btn"><i class="fas fa-download"></i> View Resume</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up"><span>About Me</span></h2>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    Hi, I'm Sairam Kattunga — a curious coder who loves building things that make life easier (or at least cooler). Whether it’s a clean user interface, a working backend, or a smart ML model that actually makes sense, I enjoy making all the pieces come together.
+
+I’m currently pursuing my B.E. in Computer Science & Engineering and have hands-on experience with Java, React, Flutter, Firebase, Python, and more. I’ve worked on everything from personal portfolios to real-time college apps and even an IoT-based safety device.
+
+I believe good code speaks for itself — but a little personality never hurts. I learn fast, break things (only in dev 😅), fix them, and repeat. Always exploring new tech, always building, always improving.
+
+If you’re looking for someone who can think, code, and occasionally crack a bad pun — we should talk.
+                </p>
+            </div>
+        </section>
+        
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up"><span>Education</span></h2>
+                <div class="grid-layout">
+                    <!-- BE Card -->
+                    <div class="card prominent-edu" data-aos="fade-up">
+                        <h4>Bachelor of Engineering (B.E.) – Computer Science and Engineering</h4>
+                        <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Saveetha School of Engineering, Chennai, TN</div>
+                        <div class="score-row">
+                            <span class="score-badge"><i class="fas fa-calendar-alt"></i> 2021 – 2025</span>
+                            <span class="score-badge"><i class="fas fa-graduation-cap"></i> CGPA: 8.6</span>
+                        </div>
+                        <div class="edu-focus">
+                            <strong>Focus:</strong> Full-Stack Development, AI/ML, Software Engineering
+                        </div>
+                        <div class="edu-coursework">
+                            <strong>Key Coursework:</strong>
+                            <ul>
+                                <li>Data Structures and Algorithms</li>
+                                <li>Operating Systems</li>
+                                <li>Machine Learning</li>
+                                <li>Web & App Development</li>
+                                <li>Computer Networks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- HSC Card -->
+                    <div class="card prominent-edu" data-aos="fade-up" data-aos-delay="100">
+                        <h4>Higher Secondary Certificate (HSC) – 12th Grade</h4>
+                        <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Sri Chaitanya Junior College, Andhra Pradesh</div>
+                        <div class="score-row">
+                            <span class="score-badge"><i class="fas fa-calendar-alt"></i> 2019 – 2021</span>
+                            <span class="score-badge"><i class="fas fa-chart-line"></i> 96.4%</span>
+                        </div>
+                        <div class="edu-focus">
+                            <strong>Stream:</strong> Science (Mathematics, Physics, Chemistry)
+                        </div>
+                        <div class="edu-achievements">
+                            <strong>Achievements:</strong>
+                            <ul>
+                                <li>College Topper</li>
+                                <li>Subject Excellence Awards in Math & Physics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- SSLC Card -->
+                    <div class="card prominent-edu" data-aos="fade-up" data-aos-delay="200">
+                        <h4>Secondary School Leaving Certificate (SSLC) – 10th Grade</h4>
+                        <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Bhashyam High School, Andhra Pradesh</div>
+                        <div class="score-row">
+                            <span class="score-badge"><i class="fas fa-calendar-alt"></i> 2018 – 2019</span>
+                            <span class="score-badge"><i class="fas fa-star"></i> CGPA: 9.8</span>
+                        </div>
+                        <div class="edu-achievements">
+                            <strong>Achievements:</strong>
+                            <ul>
+                                <li>Class Topper</li>
+                                <li>Awarded for Consistent Academic Excellence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up"><span>Experience</span></h2>
+                <div class="grid-layout">
+                    <div class="card" data-aos="fade-up">
+                        <h3>Cybersecurity Trainee</h3>
+                        <h4>HCLTech</h4>
+                        <p class="meta">Feb 2025 – Apr 2025</p>
+                        <p>Completed mandate training covering Security+, CEH, SC-900, CCNA Security, AZ-900, and analytics tools like Power BI, Tableau, and Kibana. Gained hands-on knowledge in network security, ethical hacking, cloud security, and compliance frameworks.</p>
+                        <a href="https://drive.google.com/file/d/1mL00dsci9KQw3egbR1uqb_ql2EBynX7C/view?usp=sharing" target="_blank" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Drone Pilot Intern</h3>
+                        <h4>Garuda Aerospace</h4>
+                        <p class="meta">May 2024 – July 2024</p>
+                        <p>Undertook a comprehensive internship focused on drone operations for precision agriculture and advanced surveillance. Developed practical expertise in drone navigation, data acquisition, and aerial imagery analysis, contributing to real-world applications of drone technology.</p>
+                        <a href="https://drive.google.com/file/d/1Pv0lG1BcbekAyHVMxg8zp3immvbXK5OY/view?usp=sharing" target="_blank" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up"><span>Projects</span></h2>
+                <div class="grid-layout">
+                    <div class="card" data-aos="fade-right">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>Built a responsive portfolio using React.js & Tailwind CSS with dark mode, animations, and CI/CD. Gained 1,500+ unique views, boosting recruiter interaction.</p>
+                        <div class="project-skills">
+                            <strong>Skills Used:</strong>
+                            <ul>
+                                <li>React.js</li>
+                                <li>Tailwind CSS</li>
+                                <li>JavaScript</li>
+                                <li>Responsive Design</li>
+                                <li>CI/CD</li>
+                                <li>Dark Mode Implementation</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/Sairam-kattunga/portfolio" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                    <div class="card" data-aos="fade-up">
+                        <h3>Simatix – College Connect App</h3>
+                        <p>Developed a full-stack Flutter + Firebase app for real-time faculty ratings, anonymous feedback, and push notifications. Improved student-faculty engagement by 40%.</p>
+                        <div class="project-skills">
+                            <strong>Skills Used:</strong>
+                            <ul>
+                                <li>Flutter</li>
+                                <li>Firebase</li>
+                                <li>Dart</li>
+                                <li>Push Notifications</li>
+                                <li>Real-time Database</li>
+                                <li>UI/UX Design</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/Sairam-kattunga/Simatix" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                    <div class="card" data-aos="fade-left">
+                        <h3>Smart City Traffic Monitoring with CNN</h3>
+                        <p>Designed a CNN-based model to detect traffic congestion with 93% accuracy, enabling smarter urban traffic management.</p>
+                        <div class="project-skills">
+                            <strong>Skills Used:</strong>
+                            <ul>
+                                <li>Python</li>
+                                <li>TensorFlow</li>
+                                <li>Convolutional Neural Networks (CNN)</li>
+                                <li>Data Preprocessing</li>
+                                <li>Model Evaluation</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/Sairam-kattunga/Traffic_Congestion_Monitoring_CNN" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                    <div class="card" data-aos="fade-right">
+                        <h3>All-in-One Personal Safety Device</h3>
+                        <p>Prototyped a device with torchlight, pepper spray, and emergency alerts. Targeted 70% faster response in critical situations during testing.</p>
+                        <div class="project-skills">
+                            <strong>Skills Used:</strong>
+                            <ul>
+                                <li>Embedded Systems</li>
+                                <li>Arduino</li>
+                                <li>Sensor Integration</li>
+                                <li>Prototyping</li>
+                                <li>Hardware Design</li>
+                            </ul>
+                        </div>
+                        <a href="https://drive.google.com/file/d/12xH0mekCvyNc7O-pKNapopE_3tXiKI5m/view?usp=sharing" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Report</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up"><span>Skills</span></h2>
+                <div class="grid-layout">
+                    <!-- Technical Skills Card -->
+                    <div class="card" data-aos="fade-up">
+                        <h3><i class="fas fa-code"></i> Technical Skills</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+                            <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
+                            <span class="skill-tag"><i class="fab fa-html5"></i> HTML</span>
+                            <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS</span>
+                            <span class="skill-tag"><i class="fab fa-js-square"></i> JavaScript</span>
+                            <span class="skill-tag"><i class="fab fa-react"></i> React.js</span>
+                            <span class="skill-tag"><i class="fab fa-google"></i> Flutter</span>
+                            <span class="skill-tag"><i class="fas fa-terminal"></i> C</span>
+                        </div>
+                        <div class="skill-summary">
+                            <ul>
+                                <li>Full-stack web & mobile app development</li>
+                                <li>API design & integration</li>
+                                <li>Database modeling & management</li>
+                                <li>Version control with Git & GitHub</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Analytics & Cloud Card -->
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <h3><i class="fas fa-cloud"></i> Analytics & Cloud</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fas fa-chart-bar"></i> Power BI</span>
+                            <span class="skill-tag"><i class="fas fa-chart-pie"></i> Tableau</span>
+                            <span class="skill-tag"><i class="fas fa-chart-area"></i> Kibana</span>
+                            <span class="skill-tag"><i class="fab fa-microsoft"></i> Azure</span>
+                            <span class="skill-tag"><i class="fas fa-cloud"></i> Oracle Cloud</span>
+                        </div>
+                        <div class="skill-summary">
+                            <ul>
+                                <li>Data visualization & dashboarding</li>
+                                <li>Cloud deployment & automation</li>
+                                <li>Big data analytics & reporting</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Soft Skills & Languages Card -->
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-user-friends"></i> Soft Skills & Languages</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fas fa-clock"></i> Time Management</span>
+                            <span class="skill-tag"><i class="fas fa-users"></i> Teamwork</span>
+                            <span class="skill-tag"><i class="fas fa-sync-alt"></i> Adaptability</span>
+                            <span class="skill-tag"><i class="fas fa-comments"></i> Communication</span>
+                            <span class="skill-tag"><i class="fas fa-language"></i> Telugu</span>
+                            <span class="skill-tag"><i class="fas fa-language"></i> English</span>
+                            <span class="skill-tag"><i class="fas fa-language"></i> Hindi</span>
+                        </div>
+                        <div class="skill-summary">
+                            <ul>
+                                <li>Effective collaboration in diverse teams</li>
+                                <li>Strong analytical & problem-solving skills</li>
+                                <li>Multilingual communication</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up"><span>Certifications</span></h2>
+                <div class="grid-layout">
+                    <div class="card" data-aos="fade-up">
+                        <h4>Oracle Cloud Infrastructure 2024 – Generative AI</h4>
+                        <p class="meta">Oracle University</p>
+                        <p>Focused on OCI services and cloud ML tools for generative AI applications.</p>
+                        <a href="https://drive.google.com/file/d/1_QOkIRP5SJUrn1vS-ylHGTrrKT5MBk0Z/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+                    <div class="card" data-aos="fade-up">
+                        <h4>Oracle APEX Cloud Developer Certified Professional</h4>
+                        <p class="meta">Oracle University</p>
+                        <p>Skilled in low-code app development using Oracle APEX Cloud.</p>
+                        <a href="https://drive.google.com/file/d/1H6QLNEfzjUzyX5kTfs8mOSElYCFHG1RN/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+        
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <h4>SQL and Relational Databases</h4>
+                        <p class="meta">CognitiveClass.ai, 2024</p>
+                        <p>Mastered SQL querying, data modeling, joins, and ER diagrams.</p>
+                        <a href="https://drive.google.com/file/d/1gqCAZXabqTY_b4O_bm0tGcSPF-vQUgXd/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="300">
+                        <h4>Responsive Web Design</h4>
+                        <p class="meta">freeCodeCamp, 2024</p>
+                        <p>Learned HTML5, CSS Grid/Flexbox, media queries, and mobile-first design.</p>
+                        <a href="https://drive.google.com/file/d/17voZgDHINRaStMUzJ77Hrj0A74-9bISU/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="400">
+                        <h4>Internet of Things</h4>
+                        <p class="meta">NPTEL, 2024</p>
+                        <p>Explored IoT architecture, edge computing, sensors, and management fundamentals.</p>
+                        <a href="https://drive.google.com/file/d/1IQujumoVYiCjBNkjBUicXAFcfplSVuk4/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+                    <!-- Add this card to your Certifications section -->
+                    <div class="card" data-aos="fade-up" data-aos-delay="500">
+                        <h4>Wipro Certified Java Full Stack Developer </h4>
+                        <p class="meta">Wipro Oct-2024</p>
+                        <p>Gained hands-on experience in building scalable web applications.</p>
+                        </p>
+                        <a href="https://drive.google.com/file/d/1_QOkIRP5SJUrn1vS-ylHGTrrKT5MBk0Z/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container" data-aos="fade-up">
+                <h2 class="section-title"><span>Get In Touch</span></h2>
+                <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll get back to you!</p>
+                <div class="contact-info">
+                    <div class="info-item">
+  <i class="fas fa-phone"></i>
+  <span>+91 9642736457</span>
+</div>
+<div class="info-item">
+  <i class="fas fa-envelope"></i>
+  <span>sairamkattunga3333@gmail.com</span>
+</div>
+<div class="info-item">
+  <i class="fas fa-map-marker-alt"></i>
+  <span>Bhimavaram, Andhra Pradesh, India</span>
+</div>
+
+                </div>
+                <a href="mailto:Sairamkattunga333@gmail.com" class="btn"><i class="fas fa-paper-plane"></i> Say Hello</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Rama Venkata Manikanta Sairam Kattunga. Designed with <i class="fas fa-heart" style="color:red;"></i></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate on Scroll)
+        AOS.init({
+            once: true, // whether animation should happen only once - while scrolling down
+            duration: 800, // values from 0 to 3000, with step 50ms
+            easing: 'ease-in-out', // default easing for AOS animations
+        });
+        
+        // Mobile Navigation (Hamburger Menu)
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-menu a").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+        
+        // Show console art for interviewers
+        const consoleArt = document.querySelector('.console-art').textContent;
+        console.log(consoleArt);
+
+        // Theme toggle functionality
+        document.getElementById('theme-toggle').onclick = function() {
+            const root = document.documentElement;
+            const icon = this.querySelector('i');
+            if (!document.body.classList.contains('light-mode')) {
+                root.style.setProperty('--background-color', '#f7f9fc');
+                root.style.setProperty('--text-color', '#222');
+                root.style.setProperty('--card-bg-color', '#fff');
+                root.style.setProperty('--header-bg-color', 'rgba(255,255,255,0.85)');
+                root.style.setProperty('--border-color', '#e0e0e0');
+                document.body.classList.add('light-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                root.style.setProperty('--background-color', '#121212');
+                root.style.setProperty('--text-color', '#e0e0e0');
+                root.style.setProperty('--card-bg-color', '#1e1e1e');
+                root.style.setProperty('--header-bg-color', 'rgba(30, 30, 30, 0.85)');
+                root.style.setProperty('--border-color', '#333');
+                document.body.classList.remove('light-mode');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        };
+    </script>
+</body>
+</html>
