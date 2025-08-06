@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rama Venkata Manikanta Sairam Kattunga</title>
+    <title>Rama Venkata Manikanta Sairam Kattunga - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -11,11 +11,12 @@
         :root {
             --primary-color: #2798d0;
             --secondary-color: #2575fc;
-            --background-color: #121212;
+            --background-color: #000000;
             --text-color: #e0e0e0;
-            --card-bg-color: #1e1e1e;
-            --header-bg-color: rgba(30, 30, 30, 0.85);
+            --card-bg-color: #111111;
+            --header-bg-color: rgba(0, 0, 0, 0.75);
             --border-color: #333;
+            --gradient-primary: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         }
 
         /* Light Mode Theme Variables */
@@ -23,7 +24,7 @@
             --background-color: #f7f9fc;
             --text-color: #222;
             --card-bg-color: #ffffff;
-            --header-bg-color: rgba(255, 255, 255, 0.85);
+            --header-bg-color: rgba(255, 255, 255, 0.75);
             --border-color: #e0e0e0;
         }
 
@@ -35,7 +36,6 @@
 
         html {
             scroll-behavior: smooth;
-            /* Fix for scrollbar flash on load */
             overflow-x: hidden;
         }
 
@@ -44,16 +44,111 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
-            /* Fix for scrollbar flash on load */
             overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.4s ease, color 0.3s ease;
+        }
+
+        /* --- ANIMATED BACKGROUNDS --- */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Dark Mode: Particle Field */
+        .particles {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #0d0d0d;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary-color);
+            animation: float 25s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1500px) translateX(100px);
+                opacity: 0;
+            }
         }
         
-        /* Fun ASCII Art for Interviewers in Console */
-        /* You can see this by pressing F12 or Ctrl+Shift+I */
-        .console-art {
+        /* Hide particles in light mode */
+        body.light-mode .particles {
             display: none;
         }
+
+        /* Light Mode: Soft Waves */
+        .waves {
+            display: none; /* Hidden by default */
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #f7f9fc;
+            overflow: hidden;
+        }
+        
+        /* Show waves in light mode */
+        body.light-mode .waves {
+            display: block;
+        }
+
+        .wave {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+        }
+
+        .wave-1 {
+            width: 700px;
+            height: 700px;
+            background: #aed6f1; /* Light blue */
+            top: -150px;
+            left: -150px;
+            animation: drift 20s infinite alternate ease-in-out;
+        }
+
+        .wave-2 {
+            width: 600px;
+            height: 600px;
+            background: #d6eaf8; /* Lighter blue */
+            bottom: -200px;
+            right: -200px;
+            animation: drift 25s infinite alternate ease-in-out;
+        }
+        
+        .wave-3 {
+            width: 500px;
+            height: 500px;
+            background: #ebf5fb; /* Almost white-blue */
+            bottom: 100px;
+            left: -100px;
+            animation: drift 18s infinite alternate ease-in-out;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateY(0px) translateX(0px) scale(1);
+            }
+            100% {
+                transform: translateY(80px) translateX(-60px) scale(1.1);
+            }
+        }
+        
+        /* --- END ANIMATED BACKGROUNDS --- */
 
         .container {
             max-width: 1100px;
@@ -71,8 +166,12 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: background-color 0.3s ease;
-            border-bottom: 1px solid transparent;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        body.light-mode header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -91,7 +190,7 @@
         }
         
         nav .logo span {
-             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -99,7 +198,7 @@
         nav ul {
             list-style: none;
             display: flex;
-            align-items: center; /* Vertically align items */
+            align-items: center;
         }
 
         nav ul li {
@@ -111,13 +210,26 @@
             text-decoration: none;
             font-weight: 400;
             transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
         }
 
-        nav ul li a:hover {
-            color: var(--secondary-color);
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
         }
 
-        /* Theme Toggle Button Style */
         #theme-toggle {
             background: transparent;
             border: none;
@@ -126,12 +238,13 @@
             font-size: 1.2rem;
             transition: color 0.3s ease, transform 0.4s ease;
         }
+
         #theme-toggle:hover {
             color: var(--secondary-color);
             transform: scale(1.1) rotate(15deg);
         }
         #theme-toggle .fa-sun {
-            color: #f39c12;
+            color: hsl(28, 100%, 50%);
         }
         
         .hamburger {
@@ -169,7 +282,7 @@
         }
 
         #hero h1 .gradient-text {
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -196,7 +309,7 @@
         .btn {
             display: inline-block;
             padding: 12px 28px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             color: #fff;
             text-decoration: none;
             border-radius: 50px;
@@ -216,14 +329,15 @@
         }
 
         section {
-            padding: 4rem 0; /* Increased padding */
+            padding: 5rem 0;
+            position: relative; /* Ensure sections are on top of background */
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         
         .section-title span {
@@ -238,36 +352,106 @@
             transform: translateX(-50%);
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             border-radius: 2px;
         }
 
-        #about p {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
+        #about .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            align-items: center;
+            gap: 3rem;
         }
 
+        .about-image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+            border: 5px solid var(--secondary-color);
+            box-shadow: 0 10px 40px rgba(37, 117, 252, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-image-container::before,
+        .about-image-container::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .about-image-container::before {
+            width: 100%;
+            height: 100%;
+            max-width: 310px;
+            max-height: 310px;
+            border: 2px dashed var(--primary-color);
+            animation: rotate 30s linear infinite;
+        }
+        .about-image-container::after {
+            width: 80%;
+            height: 80%;
+            max-width: 250px;
+            max-height: 250px;
+            border: 2px dashed var(--secondary-color);
+            animation: rotate 20s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .about-text-content {
+            text-align: left;
+        }
+
+        .about-text-content p {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+        
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
         
+        /* Enhanced Card Styling */
         .card {
-            background: var(--card-bg-color);
             padding: 2rem;
             border-radius: 10px;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                        border-color 0.4s ease;
             box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        /* Light mode card */
+        body.light-mode .card {
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark mode card */
+        body:not(.light-mode) .card {
+            background: rgba(25, 25, 25, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--secondary-color);
-            box-shadow: 0 8px 30px rgba(37, 117, 252, 0.2);
+            box-shadow: 0 10px 40px rgba(37, 117, 252, 0.25);
         }
 
         .card h3 {
@@ -297,58 +481,11 @@
             color: #777;
         }
         
-        .education-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+        .prominent-edu {
+            border: 2px solid var(--primary-color) !important;
+            box-shadow: 0 2px 12px rgba(37, 117, 252, 0.2);
         }
-        
-        .education-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .education-item .details h4 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        .education-item .details p {
-            margin: 0.2rem 0 0;
-            color: #bbb;
-        }
-        body.light-mode .education-item .details p {
-            color: #555;
-        }
-        
-        .education-item .score {
-            text-align: right;
-        }
-        
-        .education-item .score p {
-            margin: 0;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-        
-        .education-item .score span {
-            font-size: 0.85rem;
-            color: #aaa;
-        }
-        
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-            justify-content: center;
-            margin-bottom: 1.2rem;
-        }
-        
+
         .skills-list {
             display: flex;
             flex-wrap: wrap;
@@ -358,7 +495,7 @@
         }
 
         .skill-tag {
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             color: #fff;
             padding: 0.5rem 1.1rem;
             border-radius: 20px;
@@ -419,10 +556,6 @@
         .btn-secondary i {
             margin-right: 6px;
         }
-
-        #contact {
-             background: var(--card-bg-color);
-        }
         
         #contact .container {
             text-align: center;
@@ -445,6 +578,15 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 0.5rem 1rem;
+            background: var(--card-bg-color);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .contact-info .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(37,117,252,0.2);
         }
         
         .contact-info i {
@@ -455,71 +597,9 @@
         footer {
             text-align: center;
             padding: 2rem 0;
-            border-top: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.2);
         }
         
-        .prominent-edu {
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 2px 12px var(--secondary-color);
-            background: linear-gradient(120deg, var(--card-bg-color) 80%, #2575fc22 100%);
-            position: relative;
-            margin-bottom: 0;
-        }
-        body.light-mode .prominent-edu {
-             box-shadow: 0 8px 32px rgba(37, 117, 252, 0.15);
-        }
-        .prominent-edu h4 {
-            font-size: 1.15rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        .prominent-edu .edu-location {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: var(--secondary-color);
-            font-size: 0.98rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-        .score-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        .score-badge {
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            padding: 0.4em 1em;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.98rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-            box-shadow: 0 2px 8px rgba(37,117,252,0.15);
-        }
-        .edu-focus,
-        .edu-coursework,
-        .edu-achievements {
-            margin-bottom: 0.7rem;
-            font-size: 1rem;
-        }
-        .edu-coursework ul,
-        .edu-achievements ul {
-            margin: 0.3em 0 0 1em;
-            padding: 0;
-            font-size: 0.98rem;
-            color: #b3cfff;
-            list-style-position: inside;
-        }
-        body.light-mode .edu-coursework ul,
-        body.light-mode .edu-achievements ul {
-            color: #444;
-        }
-
         .project-skills {
             margin-bottom: 1rem;
             background: rgba(37,117,252,0.07);
@@ -547,13 +627,27 @@
         }
 
         /* Mobile Responsive Styles */
+        @media(max-width: 992px) {
+            #about .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .about-image-container {
+                margin-bottom: 2rem;
+            }
+            .about-text-content {
+                text-align: center;
+            }
+        }
+
         @media(max-width: 768px) {
             nav ul {
                 position: fixed;
                 left: -100%;
-                top: 60px; /* Adjust based on header height */
+                top: 60px;
                 flex-direction: column;
-                background-color: var(--card-bg-color);
+                background-color: var(--header-bg-color);
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
@@ -599,6 +693,15 @@
 </head>
 <body>
 
+    <div class="background-animation">
+        <div class="particles"></div>
+        <div class="waves">
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+        </div>
+    </div>
+
     <header>
         <nav class="container">
             <a href="#" class="logo"><span>Sairam</span>Kattunga</a>
@@ -624,34 +727,44 @@
         </nav>
     </header>
 
-    <section id="hero">
-        <div class="hero-content" data-aos="fade-in" data-aos-duration="1000">
-            <h1>Rama Venkata Manikanta <span class="gradient-text">Sairam Kattunga</span></h1>
-            <p class="subtitle">Computer Science Graduate  |  Committed to Continuous Innovation</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/sairamkrvm123/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Sairam-kattunga" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:Sairamkattunga333@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.instagram.com/_____sai_ram______/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://leetcode.com/u/Sairam-333/" target="_blank" aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
-            </div>
-            <a href="https://drive.google.com/file/d/125bO3fxzSSk-ZlqFuxt0at2AjRyLzeS6/view?usp=sharing" download class="btn"><i class="fas fa-download"></i> View Resume</a>
-        </div>
-    </section>
-
     <main>
+        <section id="hero">
+            <div class="hero-content" data-aos="fade-in" data-aos-duration="1000">
+                <h1>Rama Venkata Manikanta <span class="gradient-text">Sairam Kattunga</span></h1>
+                <p class="subtitle">Computer Science Graduate  |  Committed to Continuous Innovation</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/sairamkrvm123/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Sairam-kattunga" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:Sairamkattunga333@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/_____sai_ram______/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://leetcode.com/u/Sairam-333/" target="_blank" aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
+                </div>
+                <a href="https://drive.google.com/file/d/125bO3fxzSSk-ZlqFuxt0at2AjRyLzeS6/view?usp=sharing" download class="btn"><i class="fas fa-download"></i> View Resume</a>
+            </div>
+        </section>
+
         <section id="about">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up"><span>About Me</span></h2>
-                <p data-aos="fade-up" data-aos-delay="100">
-                    Hi, I'm Sairam Kattunga — a curious coder who loves building things that make life easier (or at least cooler). Whether it’s a clean user interface, a working backend, or a smart ML model that actually makes sense, I enjoy making all the pieces come together.
-
-I’m currently pursuing my B.E. in Computer Science & Engineering and have hands-on experience with Java, React, Flutter, Firebase, Python, and more. I’ve worked on everything from personal portfolios to real-time college apps and even an IoT-based safety device.
-
-I believe good code speaks for itself — but a little personality never hurts. I learn fast, break things (only in dev 😅), fix them, and repeat. Always exploring new tech, always building, always improving.
-
-If you’re looking for someone who can think, code, and occasionally crack a bad pun — we should talk.
-                </p>
+                <div class="about-grid">
+                    <div class="about-image-container" data-aos="fade-right" data-aos-delay="100">
+                        <img src="abc.jpg" alt="Sairam Kattunga">
+                    </div>
+                    <div class="about-text-content" data-aos="fade-left" data-aos-delay="200">
+                        <p>
+                            Hi, I'm Sairam Kattunga — a curious coder who loves building things that make life easier (or at least cooler). Whether it’s a clean user interface, a working backend, or a smart ML model that actually makes sense, I enjoy making all the pieces come together.
+                        </p>
+                        <p>
+                            I’m a final year B.E. student in Computer Science & Engineering with hands-on experience in Java, React, Flutter, Firebase, Python, and more. I’ve worked on everything from personal portfolios to real-time college apps and even an IoT-based safety device.
+                        </p>
+                        <p>
+                            I believe good code speaks for itself — but a little personality never hurts. I learn fast, break things (only in dev 😅), fix them, and repeat. Always exploring new tech, always building, always improving.
+                        </p>
+                         <p>
+                            If you’re looking for someone who can think, code, and occasionally crack a bad pun — we should talk.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -661,57 +774,21 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                 <div class="grid-layout">
                     <div class="card prominent-edu" data-aos="fade-up">
                         <h4>Bachelor of Engineering (B.E.) – Computer Science and Engineering</h4>
-                        <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Saveetha School of Engineering, Chennai, TN</div>
-                        <div class="score-row">
-                            <span class="score-badge"><i class="fas fa-calendar-alt"></i> 2021 – 2025</span>
-                            <span class="score-badge"><i class="fas fa-graduation-cap"></i> CGPA: 8.6</span>
-                        </div>
-                        <div class="edu-focus">
-                            <strong>Focus:</strong> Full-Stack Development, AI/ML, Software Engineering
-                        </div>
-                        <div class="edu-coursework">
-                            <strong>Key Coursework:</strong>
-                            <ul>
-                                <li>Data Structures and Algorithms</li>
-                                <li>Operating Systems</li>
-                                <li>Machine Learning</li>
-                                <li>Web & App Development</li>
-                                <li>Computer Networks</li>
-                            </ul>
-                        </div>
+                        <p class="meta">Saveetha School of Engineering, Chennai, TN | 2021 – 2025</p>
+                        <p><strong>CGPA:</strong> 8.6</p>
+                        <p><strong>Key Coursework:</strong> Data Structures, OS, Machine Learning, Web & App Development, Computer Networks.</p>
                     </div>
                     <div class="card prominent-edu" data-aos="fade-up" data-aos-delay="100">
                         <h4>Higher Secondary Certificate (HSC) – 12th Grade</h4>
-                        <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Sri Chaitanya Junior College, Andhra Pradesh</div>
-                        <div class="score-row">
-                            <span class="score-badge"><i class="fas fa-calendar-alt"></i> 2019 – 2021</span>
-                            <span class="score-badge"><i class="fas fa-chart-line"></i> 96.4%</span>
-                        </div>
-                        <div class="edu-focus">
-                            <strong>Stream:</strong> Science (Mathematics, Physics, Chemistry)
-                        </div>
-                        <div class="edu-achievements">
-                            <strong>Achievements:</strong>
-                            <ul>
-                                <li>College Topper</li>
-                                <li>Subject Excellence Awards in Math & Physics</li>
-                            </ul>
-                        </div>
+                        <p class="meta">Sri Chaitanya Junior College, Andhra Pradesh | 2019 – 2021</p>
+                        <p><strong>Percentage:</strong> 96.4%</p>
+                        <p><strong>Achievements:</strong> College Topper, Excellence Awards in Math & Physics.</p>
                     </div>
                     <div class="card prominent-edu" data-aos="fade-up" data-aos-delay="200">
                         <h4>Secondary School Leaving Certificate (SSLC) – 10th Grade</h4>
-                        <div class="edu-location"><i class="fas fa-map-marker-alt"></i> Bhashyam High School, Andhra Pradesh</div>
-                        <div class="score-row">
-                            <span class="score-badge"><i class="fas fa-calendar-alt"></i> 2018 – 2019</span>
-                            <span class="score-badge"><i class="fas fa-star"></i> CGPA: 9.8</span>
-                        </div>
-                        <div class="edu-achievements">
-                            <strong>Achievements:</strong>
-                            <ul>
-                                <li>Class Topper</li>
-                                <li>Awarded for Consistent Academic Excellence</li>
-                            </ul>
-                        </div>
+                        <p class="meta">Bhashyam High School, Andhra Pradesh | 2018 – 2019</p>
+                        <p><strong>CGPA:</strong> 9.8</p>
+                        <p><strong>Achievements:</strong> Class Topper, Consistent Academic Excellence Award.</p>
                     </div>
                 </div>
             </div>
@@ -749,12 +826,8 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                         <div class="project-skills">
                             <strong>Skills Used:</strong>
                             <ul>
-                                <li>React.js</li>
-                                <li>Tailwind CSS</li>
-                                <li>JavaScript</li>
-                                <li>Responsive Design</li>
-                                <li>CI/CD</li>
-                                <li>Dark Mode Implementation</li>
+                                <li>React.js, Tailwind CSS, JavaScript</li>
+                                <li>Responsive Design, CI/CD, Dark Mode</li>
                             </ul>
                         </div>
                         <a href="https://github.com/Sairam-kattunga/sairam-portfolio" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
@@ -765,12 +838,8 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                         <div class="project-skills">
                             <strong>Skills Used:</strong>
                             <ul>
-                                <li>Flutter</li>
-                                <li>Firebase</li>
-                                <li>Dart</li>
-                                <li>Push Notifications</li>
-                                <li>Real-time Database</li>
-                                <li>UI/UX Design</li>
+                                <li>Flutter, Firebase, Dart</li>
+                                <li>Push Notifications, Real-time Database</li>
                             </ul>
                         </div>
                         <a href="https://github.com/Sairam-kattunga/Simatix-App" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
@@ -781,11 +850,8 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                         <div class="project-skills">
                             <strong>Skills Used:</strong>
                             <ul>
-                                <li>Python</li>
-                                <li>TensorFlow</li>
-                                <li>Convolutional Neural Networks (CNN)</li>
-                                <li>Data Preprocessing</li>
-                                <li>Model Evaluation</li>
+                                <li>Python, TensorFlow, CNN</li>
+                                <li>Data Preprocessing, Model Evaluation</li>
                             </ul>
                         </div>
                         <a href="https://github.com/Sairam-kattunga/Traffic_Congestion_Monitoring_CNN" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
@@ -796,11 +862,8 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                         <div class="project-skills">
                             <strong>Skills Used:</strong>
                             <ul>
-                                <li>Embedded Systems</li>
-                                <li>Arduino</li>
-                                <li>Sensor Integration</li>
-                                <li>Prototyping</li>
-                                <li>Hardware Design</li>
+                                <li>Embedded Systems, Arduino</li>
+                                <li>Sensor Integration, Prototyping</li>
                             </ul>
                         </div>
                         <a href="https://drive.google.com/file/d/12xH0mekCvyNc7O-pKNapopE_3tXiKI5m/view?usp=sharing" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> View Report</a>
@@ -825,14 +888,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                             <span class="skill-tag"><i class="fab fa-google"></i> Flutter</span>
                             <span class="skill-tag"><i class="fas fa-terminal"></i> C</span>
                         </div>
-                        <div class="skill-summary">
-                            <ul>
-                                <li>Full-stack web & mobile app development</li>
-                                <li>API design & integration</li>
-                                <li>Database modeling & management</li>
-                                <li>Version control with Git & GitHub</li>
-                            </ul>
-                        </div>
                     </div>
                     <div class="card" data-aos="fade-up" data-aos-delay="100">
                         <h3><i class="fas fa-cloud"></i> Analytics & Cloud</h3>
@@ -842,13 +897,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                             <span class="skill-tag"><i class="fas fa-chart-area"></i> Kibana</span>
                             <span class="skill-tag"><i class="fab fa-microsoft"></i> Azure</span>
                             <span class="skill-tag"><i class="fas fa-cloud"></i> Oracle Cloud</span>
-                        </div>
-                        <div class="skill-summary">
-                            <ul>
-                                <li>Data visualization & dashboarding</li>
-                                <li>Cloud deployment & automation</li>
-                                <li>Big data analytics & reporting</li>
-                            </ul>
                         </div>
                     </div>
                     <div class="card" data-aos="fade-up" data-aos-delay="200">
@@ -862,13 +910,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                             <span class="skill-tag"><i class="fas fa-language"></i> English</span>
                             <span class="skill-tag"><i class="fas fa-language"></i> Hindi</span>
                         </div>
-                        <div class="skill-summary">
-                            <ul>
-                                <li>Effective collaboration in diverse teams</li>
-                                <li>Strong analytical & problem-solving skills</li>
-                                <li>Multilingual communication</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -881,46 +922,39 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
                     <div class="card" data-aos="fade-up">
                         <h4>Oracle Cloud Infrastructure 2024 – Generative AI</h4>
                         <p class="meta">Oracle University</p>
-                        <p>Focused on OCI services and cloud ML tools for generative AI applications.</p>
                         <a href="https://drive.google.com/file/d/1_QOkIRP5SJUrn1vS-ylHGTrrKT5MBk0Z/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
                     <div class="card" data-aos="fade-up" data-aos-delay="100">
                         <h4>Oracle APEX Cloud Developer Certified Professional</h4>
                         <p class="meta">Oracle University</p>
-                        <p>Skilled in low-code app development using Oracle APEX Cloud.</p>
                         <a href="https://drive.google.com/file/d/1H6QLNEfzjUzyX5kTfs8mOSElYCFHG1RN/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
-            
                     <div class="card" data-aos="fade-up" data-aos-delay="200">
                         <h4>SQL and Relational Databases</h4>
                         <p class="meta">CognitiveClass.ai, 2024</p>
-                        <p>Mastered SQL querying, data modeling, joins, and ER diagrams.</p>
                         <a href="https://drive.google.com/file/d/1gqCAZXabqTY_b4O_bm0tGcSPF-vQUgXd/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
                     <div class="card" data-aos="fade-up" data-aos-delay="300">
                         <h4>Responsive Web Design</h4>
                         <p class="meta">freeCodeCamp, 2024</p>
-                        <p>Learned HTML5, CSS Grid/Flexbox, media queries, and mobile-first design.</p>
                         <a href="https://drive.google.com/file/d/17voZgDHINRaStMUzJ77Hrj0A74-9bISU/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
                     <div class="card" data-aos="fade-up" data-aos-delay="400">
                         <h4>Internet of Things</h4>
                         <p class="meta">NPTEL, 2024</p>
-                        <p>Explored IoT architecture, edge computing, sensors, and management fundamentals.</p>
                         <a href="https://drive.google.com/file/d/1IQujumoVYiCjBNkjBUicXAFcfplSVuk4/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
                     <div class="card" data-aos="fade-up" data-aos-delay="500">
                         <h4>Wipro Certified Java Full Stack Developer </h4>
                         <p class="meta">Wipro Oct-2024</p>
-                        <p>Gained hands-on experience in building scalable web applications.</p>
-                        <a href="https://drive.google.com/file/d/1_QOkIRP5SJUrn1vS-ylHGTrrKT5MBk0Z/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
+                        <a href="https://drive.google.com/file/d/1tLh_i_p7UeS-uV9_yW_z-X6hJq8R_k9C/view?usp=sharing" class="btn-secondary"><i class="fas fa-award"></i> View Certificate</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <div class="container" data-aos="fade-up">
+            <div class="container card" data-aos="fade-up">
                 <h2 class="section-title"><span>Get In Touch</span></h2>
                 <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll get back to you!</p>
                 <div class="contact-info">
@@ -952,9 +986,9 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
     <script>
         // Initialize AOS (Animate on Scroll)
         AOS.init({
-            once: true, // whether animation should happen only once - while scrolling down
-            duration: 800, // values from 0 to 3000, with step 50ms
-            easing: 'ease-in-out', // default easing for AOS animations
+            once: true,
+            duration: 800,
+            easing: 'ease-in-out',
         });
         
         // Mobile Navigation (Hamburger Menu)
@@ -976,7 +1010,6 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
         const body = document.body;
         const themeIcon = themeToggle.querySelector('i');
 
-        // Function to set the theme
         const applyTheme = (theme) => {
             if (theme === 'light') {
                 body.classList.add('light-mode');
@@ -989,16 +1022,48 @@ If you’re looking for someone who can think, code, and occasionally crack a ba
             }
         };
 
-        // Check for saved theme in localStorage on page load
-        const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
         applyTheme(savedTheme);
 
-        // Event listener for the toggle button
         themeToggle.addEventListener('click', () => {
             let newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
             applyTheme(newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // --- PARTICLE GENERATION SCRIPT ---
+        // This script is only for the dark mode particle background
+        function createParticles() {
+            const particleContainer = document.querySelector('.particles');
+            if (!particleContainer) return;
+            
+            const particleCount = 100; // Adjust number of particles
+            for (let i = 0; i < particleCount; i++) {
+                let particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Randomize properties
+                const size = Math.random() * 3 + 1; // Size from 1px to 4px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Randomize animation duration and delay
+                const duration = Math.random() * 15 + 10; // Duration 10s to 25s
+                const delay = Math.random() * 10; // Delay up to 10s
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `-${delay}s`;
+                
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Only create particles if in dark mode initially
+        if (!body.classList.contains('light-mode')) {
+            createParticles();
+        }
 
     </script>
 </body>
